@@ -56,17 +56,21 @@ class MainActivity : AppCompatActivity() {
 
         val unitOptions = arrayOf("In", "Cm")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, unitOptions)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(R.layout.spinner_text)
         unitSpinner = findViewById(R.id.unitSpinner)
         unitSpinner.adapter = adapter
 
         unitSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
                 unit = adapterView.getItemAtPosition(position) as String
+                val selectedView = unitSpinner.selectedView as TextView
+                selectedView.setTextColor(resources.getColor(R.color.black))
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {
                 unit = adapterView.getItemAtPosition(0) as String
+                val selectedView = unitSpinner.selectedView as TextView
+                selectedView.setTextColor(resources.getColor(R.color.black))
             }
         }
         var age:Int = 0
@@ -113,26 +117,30 @@ class MainActivity : AppCompatActivity() {
                 try {
                     height = editHeight.text.toString().toFloat()
                     weight = editWeight.text.toString().toFloat()
+                    if(unit=="In"){
+                        height= ((2.54*height)/100).toFloat()
+                    }else{
+                        height /= 100
+                    }
 
-                    if (height==0f){
+                    if (height==0f || height>300f || height<0f ){
                         Toast.makeText(this,"Invalid Height",Toast.LENGTH_SHORT).show()
-                    }else if(weight==0f){
+                    }else if(weight==0f || weight<0f || weight>500f){
                         Toast.makeText(this,"Invalid Weight",Toast.LENGTH_SHORT).show()
                     }else if(gender==""){
                         Toast.makeText(this,"Please Select A gender",Toast.LENGTH_SHORT).show()
                     }else if(age<3){
                         Toast.makeText(this,"BMI Not Applicable For This Age",Toast.LENGTH_SHORT).show()
                     }else{
-                        if(unit=="In"){
-                            height= ((2.54*height)/100).toFloat()
-                        }else{
-                            height /= 100
-                        }
+
                         var bmi:Float = weight/(height*height)
                         isBmi=false
                         bmiBtn.text ="RESET"
-
-                        gaugeView.setValue(bmi,gender)
+                        if(bmi>40){
+                            Toast.makeText(this,"Wrong measurement inputs",Toast.LENGTH_LONG)
+                        }else {
+                            gaugeView.setValue(bmi, gender)
+                        }
                     }
 
                 }catch (e:Exception){
@@ -147,6 +155,7 @@ class MainActivity : AppCompatActivity() {
                 boxMale.setBackgroundResource(R.drawable.male_female_box)
                 bmiBtn.text="GET BMI"
                 isBmi = true
+                gaugeView.setValue(0f,"")
             }
         }
 

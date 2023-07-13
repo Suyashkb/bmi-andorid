@@ -27,8 +27,8 @@ class GaugeView : RelativeLayout {
     var innerBezelColor: Int = Color.WHITE
     var insideColor: Int = Color.WHITE
     var needleColor: Int = Color.TRANSPARENT
-    var valueColor: Int = Color.DKGRAY
-    var statusColor: Int = Color.DKGRAY
+    var valueColor: Int = Color.WHITE
+    var statusColor: Int = R.color.color_primary
 
     var outerBezelWidth = 2f
     var innerBezelWidth = 5f
@@ -95,21 +95,21 @@ class GaugeView : RelativeLayout {
         valueLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25f)
         labelsLL.addView(valueLabel)
 
-        //create the statusLabel TextView and add it as a subview of labelsLL
+
         statusLabel = TextView(context)
         statusLabel.text = ""
-        statusLabel.setTextColor(statusColor)
+        statusLabel.setTextColor(resources.getColor(R.color.color_primary))
         statusLabel.gravity = Gravity.CENTER
         statusLabel.setTypeface(statusLabel.typeface, Typeface.BOLD)
-        statusLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
+        statusLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
         labelsLL.addView(statusLabel)
 
         genderLabel = TextView(context)
         genderLabel.text = ""
-        genderLabel.setTextColor(statusColor)
+        genderLabel.setTextColor(resources.getColor(R.color.color_primary))
         genderLabel.gravity = Gravity.CENTER
         genderLabel.setTypeface(statusLabel.typeface, Typeface.BOLD)
-        genderLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
+        genderLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
         labelsLL.addView(genderLabel)
 
         //initialize a path, a paint and a RectF which are needed during the drawing phase
@@ -255,7 +255,7 @@ class GaugeView : RelativeLayout {
         genderLabel.text = gender
         if (value in 0.0..19.5){
             statusLabel.text="Underweight"
-        }else if (value>19.5 && value<=24){
+        }else if (value>18.5 && value<=24){
             statusLabel.text="NormalWeight"
         }else if (value>24 && value <=30){
             statusLabel.text="Overweight"

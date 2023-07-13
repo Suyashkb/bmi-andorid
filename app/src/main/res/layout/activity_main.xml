@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#070707"
+    android:background="#000000"
     android:orientation="vertical"
     android:layout_weight="3"
     android:id="@+id/root_view"
@@ -91,7 +91,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:text="D.O.B :"
-                android:textColor="@color/white"
+                android:textColor="@color/color_primary"
                 android:textSize="24dp"
                 android:id="@+id/dob_text"
                 />
@@ -101,7 +101,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:text="Height:"
-                android:textColor="@color/white"
+                android:textColor="@color/color_primary"
                 android:textSize="24dp"
                 android:id="@+id/height_text"
                 />
@@ -111,7 +111,7 @@
                 android:layout_alignParentLeft="true"
                 android:text="Weight(kg):"
                 android:layout_alignParentBottom="true"
-                android:textColor="@color/white"
+                android:textColor="@color/color_primary"
                 android:textSize="24dp"
                 android:id="@+id/weight_text"
                 />
@@ -134,7 +134,9 @@
                     android:focusable="false"
                     android:id="@+id/dob_text_input"
                     android:hint="DD/MM/YYYY"
+                android:textColorHint="@color/black"
                 android:paddingHorizontal="5dp"
+                android:textColor="@color/black"
                 />
             <EditText
                 android:layout_width="wrap_content"
@@ -144,20 +146,33 @@
                 android:layout_centerVertical="true"
                 android:inputType="number"
                 android:ems="3"
+                android:textColorHint="@color/black"
                 android:id="@+id/edit_height"
                 android:hint="0"
                 android:paddingHorizontal="3dp"
+                android:textColor="@color/black"
 />
             <Spinner
                 android:id="@+id/unitSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@drawable/spinner_background"
                 android:entries="@array/unit_options"
                 android:layout_alignParentEnd="true"
                 android:layout_toRightOf="@id/edit_height"
                 android:layout_centerVertical="true"
                 android:textAlignment="center"
+                android:popupBackground="@color/white"
+                android:background="@drawable/spinner_background"
+
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_arrow_drop_down_24"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="-25dp"
+                android:background="@color/white"
+                android:layout_toRightOf="@id/unitSpinner"
                 />
             <EditText
                 android:layout_width="wrap_content"
@@ -169,7 +184,10 @@
                 android:ems="3"
                 android:id="@+id/edit_weight"
                 android:hint="0"
+                android:textColorHint="@color/black"
                 android:paddingHorizontal="4dp"
+                android:textColor="@color/black"
+
 />
         </RelativeLayout>
 
@@ -177,7 +195,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Get BMI"
-            android:backgroundTint="@color/purple_500"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/color_primary"
             android:layout_marginTop="10dp"
             android:id="@+id/bmi_btn"
             />
