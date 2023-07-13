@@ -63,14 +63,24 @@ class MainActivity : AppCompatActivity() {
         unitSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
                 unit = adapterView.getItemAtPosition(position) as String
-                val selectedView = unitSpinner.selectedView as TextView
-                selectedView.setTextColor(resources.getColor(R.color.black))
+                try {
+                    var selectedView = unitSpinner.selectedView as TextView
+                    selectedView.setTextColor(resources.getColor(R.color.black))
+                }catch (exception:Exception){
+                    Log.d("errot","error")
+                }
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {
                 unit = adapterView.getItemAtPosition(0) as String
-                val selectedView = unitSpinner.selectedView as TextView
-                selectedView.setTextColor(resources.getColor(R.color.black))
+                try {
+                    var selectedView = unitSpinner.selectedView as TextView
+                    selectedView.setTextColor(resources.getColor(R.color.black))
+                }catch (exception:Exception){
+                    Log.d("errot","error")
+                }
+
+
             }
         }
         var age:Int = 0
